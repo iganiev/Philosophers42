@@ -1,2 +1,2 @@
 # Philosophers42
-This project is about philosophers dining problem using threads
+This project is about philosophers dining problem using threads and mutex
