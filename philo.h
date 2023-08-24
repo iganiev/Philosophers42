@@ -37,13 +37,14 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-    int			philo_id;
-    t_data		*info;
-    int			left_fork;
-    int			meal_count;
-    long long	last_meal_time;
-    int			right_fork;
-	// bool holding_fork;
+    int				philo_id;
+    t_data			*info;
+    int				left_fork;
+    int				meal_count;
+    long long		last_meal_time;
+    int				right_fork;
+	bool			holding_fork;
+	pthread_mutex_t ph_lock;
 
 	pthread_t	thread;
 }                           t_philo;

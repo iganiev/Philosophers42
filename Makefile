@@ -9,8 +9,6 @@
 #    Updated: 2023/08/11 15:30:22 by iganiev          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
 NAME = philo
 
 SRC = philosophers.c utils.c \
@@ -19,7 +17,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=thread
 
 $(NAME): $(OBJ)
 		cc $(OBJ)  $(CFLAGS) -o $(NAME)
