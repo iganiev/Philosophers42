@@ -11,13 +11,13 @@
 # **************************************************************************** #
 NAME = philo
 
-SRC = philosophers.c utils.c \
+SRC = philosophers.c utils.c is_aeting.c parsing.c run_simulation.c simulation_finished.c\
 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -g3 -pthread #-fsanitize=thread
 
 $(NAME): $(OBJ)
 		cc $(OBJ)  $(CFLAGS) -o $(NAME)

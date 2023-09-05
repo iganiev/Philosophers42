@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iganiev <iganiev@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:30:47 by iganiev           #+#    #+#             */
-/*   Updated: 2023/08/11 15:30:47 by iganiev          ###   ########.fr       */
+/*   Updated: 2023/08/30 14:26:38 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static	int	is_space(int c)
+static int	is_space(int c)
 {
-	return (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f' || c == '\r');
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r');
 }
 
 long long	philo_atoi(const char *str)
@@ -45,18 +45,26 @@ long long	philo_atoi(const char *str)
 	return (nbr * sign);
 }
 
-long long   get_time()
+long long	get_time(void)
 {
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return (((long long)tv.tv_sec * 1000) + ((long long)tv.tv_usec / 1000));
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (((long long)tv.tv_sec * 1000) + ((long long)tv.tv_usec / 1000));
 }
 
-void    ft_usleep(int ms)
+void	ft_usleep(int ms)
 {
 	long long	start;
 
 	start = get_time();
-	while (get_time() - start < ms)
+	usleep(ms * 900);
+	while ((get_time() - start) < ms)
 		usleep(100);
+}
+
+void	ft_free(t_philo *philo, t_data *info)
+{
+	free(info->forks);
+	free(philo);
 }
