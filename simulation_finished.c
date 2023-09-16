@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulation_finished.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:34:34 by iganiev           #+#    #+#             */
-/*   Updated: 2023/08/30 18:49:25 by iganiev          ###   ########.fr       */
+/*   Updated: 2023/09/14 19:40:25 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	is_dead(t_data *info, t_philo *philo)
 
 int	simulation_finished(t_philo *philo, t_data *info)
 {
-	while (true)
+	while (1)
 	{
 		pthread_mutex_lock(&(philo->info->lock));
 		if (info->dead)

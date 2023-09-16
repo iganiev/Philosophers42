@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_simulation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:38:48 by iganiev           #+#    #+#             */
-/*   Updated: 2023/08/30 18:55:59 by iganiev          ###   ########.fr       */
+/*   Updated: 2023/09/14 18:26:45 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*philosopher(void *arg)
 	t_philo	*philo;
 
 	philo = arg;
+	if (philo->philo_id % 2 == 0)
+		ft_usleep(philo->info->time_to_eat);
 	while (1)
 	{
 		pthread_mutex_lock(&(philo->info->lock));

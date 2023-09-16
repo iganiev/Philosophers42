@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_aeting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:32:08 by iganiev           #+#    #+#             */
-/*   Updated: 2023/08/30 19:18:08 by iganiev          ###   ########.fr       */
+/*   Updated: 2023/09/15 21:07:21 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,10 @@ void	grab_forks(t_philo *philo)
 		pthread_mutex_lock(&(philo->info->forks[philo->left_fork]));
 		pthread_mutex_lock(&(philo->info->forks[philo->right_fork]));
 	}
-	philo->holding_fork = 1;
 }
 
 void	release_forks(t_philo *philo)
 {
-	philo->holding_fork = 0;
 	if (philo->info->count_philo % 2 != 0
 		&& (philo->philo_id == philo->info->count_philo - 1))
 	{
@@ -59,11 +57,12 @@ void	release_forks(t_philo *philo)
 		pthread_mutex_unlock(&(philo->info->forks[philo->left_fork]));
 		pthread_mutex_unlock(&(philo->info->forks[philo->right_fork]));
 	}
+	ft_usleep(philo->info->time_to_eat);
 }
 
 int	is_eating(t_philo *philo)
 {
-	if (philo->holding_fork == 0)
+	if (philo->info->count_philo != 1)
 	{
 		grab_forks(philo);
 		display_routine(philo->info, philo->philo_id, "has taken a fork");
