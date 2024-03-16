@@ -6,7 +6,7 @@
 /*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:28:31 by iganiev           #+#    #+#             */
-/*   Updated: 2023/08/30 14:52:24 by iganiev          ###   ########.fr       */
+/*   Updated: 2023/09/20 21:04:48 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	parse_args(int ac, char *av[])
 		return (-1);
 	}
 	i = 1;
-	while (av[i])
+	while (i < ac)
 	{
-		if (philo_atoi(av[i]) <= 0)
+		if (!is_digit_string(av[i]) || philo_atoi(av[i]) <= 0)
 		{
 			printf("Error: Invalid arguments.\n");
 			return (-1);
@@ -41,6 +41,7 @@ void	get_data(t_data *info, int ac, char *av[])
 	info->time_to_die = philo_atoi(av[2]);
 	info->time_to_eat = philo_atoi(av[3]);
 	info->time_to_sleep = philo_atoi(av[4]);
+	info->fork_state = ft_calloc(info->count_philo, sizeof(int));
 	if (ac == 6)
 		info->count_meals = philo_atoi(av[5]);
 	else
